@@ -50,7 +50,7 @@ Using dataset.xlsx with 2756 records, we run HDBSCAN using several cases combina
 6. HDBSCAN min_cluster_size and min_samples range from 5, 10, 15, 25 (min_cluster_size=5 and min_samples=5, min_cluster_size=10 and min_samples=5, min_cluster_size=10 and min_samples=10, min_cluster_size=15 and min_samples=10, min_cluster_size=15 and min_samples=15, min_cluster_size=20 and min_samples=15, min_cluster_size=20 and min_samples=20, min_cluster_size=25 and min_samples=20, min_cluster_size=25 and min_samples=25)
 7. Using UMAP dimensional reduction to 120 dimension (2756x120)
 
-## E. Result
+## E. Clustering Result
 Using silhouette_score (higher is better) and davies_bouldin_score (lower is better), The tables below show the best combination in each vector combination:
 | no | Semantic Embeddings | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
 |----|----------------------|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
@@ -71,7 +71,9 @@ Using silhouette_score (higher is better) and davies_bouldin_score (lower is bet
 | 5  | vner only | 10 | 10 | 51 | 827 | 1929 | 0.5299 | **0.410** |
 | 6  | vner only | 15 | 15 | 32 | 997 | 1759 | **0.5357** | 0.428 |
 
-## F. Conclusion
+## F. Labeling
+We start by exploring the clustering with vner only (min_cluster_size=15, min_samples=15) to get the broad view of cluster
+
 
 
 
