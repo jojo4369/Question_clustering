@@ -51,24 +51,25 @@ Using dataset.xlsx with 2756 records, we run HDBSCAN using several cases combina
 7. Using UMAP dimensional reduction to 120 dimension (2756x120)
 
 ## E. Result
-Using silhouette_score (higher is better) and davies_bouldin_score (lower is better), we evaluate best combination in features:
+Using silhouette_score (higher is better) and davies_bouldin_score (lower is better), The tables below show the best combination in each vector combination:
 | no | Semantic Embeddings | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
 |----|----------------------|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
-| 1  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 10 | 10 | 82 | 187 | 2569 | **<u>0.9270</u>** | <u>**0.060**</u> |
+| 1  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 10 | 10 | 82 | 187 | 2569 | **0.9270** | **0.060** |
 | 2  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 10 | 10 | 82 | 303 | 2453 | 0.9210 | 0.084 |
 
 | no | Semantic Embeddings | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
 |----|----------------------|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
 | 1  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 15 | 15 | 65 | 217 | 2539 | 0.9028 | 0.097 |
-| 2  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 15 | 15 | 61 | 385 | 2371 | <u>**0.9234**</u> | <u>**0.069**</u> |
+| 2  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 15 | 15 | 61 | 385 | 2371 | **0.9234** | **0.069** |
 
-| no | Semantic Embeddings | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
-|----|----------------------|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
-| 3  | OpenAI text-embedding-3-small | vw | 15 | 15 | 28 | 1136 | 1620 | 0.8184 | 0.156 |
-| 3  | OpenAI text-embedding-3-small | vk | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| 3  | OpenAI text-embedding-3-small | vp | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| 3  | OpenAI text-embedding-3-small | vt | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| 3  | OpenAI text-embedding-3-small | vner | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| no | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
+|----|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
+| 1  | vw only | 15 | 15 | 28 | 1136 | 1620 | 0.8184 | 0.156 |
+| 2  | vk only | 20 | 20 | 33 | 1238 | 1518 | 0.8482 | 0.189 |
+| 3  | vp only | 5 | 5 | 89 | 1079 | 1677 | 0.3155 | 0.568 |
+| 4  | vt only | 25 | 25 | 14 | 1678 | 1078 | 0.9727 | 0.051 |
+| 5  | vner only | 10 | 10 | 51 | 827 | 1929 | 0.5299 | **0.410** |
+| 6  | vner only | 15 | 15 | 32 | 997 | 1759 | **0.5357** | 0.428 |
 
 ## F. Conclusion
 
