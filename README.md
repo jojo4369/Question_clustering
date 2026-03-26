@@ -54,13 +54,13 @@ Using dataset.xlsx with 2756 records, we run HDBSCAN using several cases combina
 Using silhouette_score (higher is better) and davies_bouldin_score (lower is better), we evaluate best combination in features:
 | no | Semantic Embeddings | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
 |----|----------------------|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
-| 1  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 10 | 10 | 82 | 187 | 2569 | **0.9270** | 0.060 |
+| 1  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 10 | 10 | 82 | 187 | 2569 | <u>**0.9270**</u> | <u>**0.060**</u> |
 | 2  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 10 | 10 | 82 | 303 | 2453 | 0.9210 | 0.084 |
 
 | no | Semantic Embeddings | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
 |----|----------------------|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
 | 1  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 15 | 15 | 65 | 217 | 2539 | 0.9028 | 0.097 |
-| 2  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 15 | 15 | 61 | 385 | 2371 | **0.9234** | 0.069 |
+| 2  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 15 | 15 | 61 | 385 | 2371 | <u>**0.9234**</u> | <u>**0.069**</u> |
 
 | no | Semantic Embeddings | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
 |----|----------------------|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
