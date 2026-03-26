@@ -6,7 +6,7 @@ The main idea is text based dataset represented into 4 feature vectors: semantic
 
 In addition, we use HDBSCAN clustering algorithm instead of ITER-HDBSCAN and we add vector Named Entity Recognition (NER) (Vner) to represent the general representation of text in the form of entities word tags.
 
-A. Dataset Preparation:
+## A. Dataset Preparation:
 1. Prepare dataset, a text based sentences in a xlsx file format
 2. Run stage-02 in yohanes.ipynb, where creates two columns: a clean version of sentences and deep_clean version
 3. Run OpenAIEmbedding.ipynb if you want to embeddings the sentences using OpenAI embeddings (support multi languages) model using API (need an OpenAI API key). This process will creates a JSON file with embeddings vectors on each sentences (OpenAIEmbeddings_512_question.json, OpenAIEmbeddings_512_question_clean_simple.json).
@@ -14,7 +14,7 @@ A. Dataset Preparation:
 5. The final output is an xlsx dataset (dataset.xlsx) where at least have original question, question_clean_simple, question_clean_deep, and ner column.
 6. dataset.xlsx is real-world text-based user questions in the domain of Official Statistics (Statistics Indonesia - BPS, 2024) that has been anonimized and decomposed from original sentences.
 
-B. Reproduce Clustering Process with HDBSCAN using Semantic vector (Vw), Lexical Vector/TF-IDF vector (Vk), Part of Speech (POS) tag vector (Vp), LDA Probability topic vector (Vt), and NER vector (additional):
+## B. Reproduce:
 1. In yohanes.ipynb, using dataset.xlsx, run Stage-01 to load the dataset in the dataframe.
 2. Stage-03 to view the dataset, ensure requested colums are available (question, ner, question_clean_simple, question_clean_deep) and load to dataframe.
 3. Stage-07: create vector ner and stage-08, scale vector ner. At this stage, the process have **[vectors_ner_power]**.
@@ -31,7 +31,7 @@ B. Reproduce Clustering Process with HDBSCAN using Semantic vector (Vw), Lexical
 14. Stage-33: setting HDBSCAN parameter min_cluster_size and min_samples and run the algorithm.
 15. Stage-37: Evaluate the cluster with silhouette_score, davies_bouldin_score, and calinski_harabasz_score. Those are internal evaluation metrics, where the assessment of the clustering quality is based solely on the dataset and the clustering results, and not on external, ground-truth labels.
 
-C. Experiment:
+## C. Experiment:
 Using dataset.xlsx with 2756 records, we run HDBSCAN using several cases combination:
 1. concat([vectors_vw], [vectors_vk_power], [vectors_vp_power], [vectors_vt_normal])
 2. concat([vectors_vw], [vectors_vk_power], [vectors_vp_power], [vectors_vt_normal], [vectors_ner_power]) 
@@ -41,17 +41,21 @@ Using dataset.xlsx with 2756 records, we run HDBSCAN using several cases combina
 6. [vectors_vt_normal]
 7. [vectors_ner_power]
 
-D. Parameters:
-1. Embeddings using IndoSBERT model that support indonesian sentences with vector length=256 (2756x256) and using OpenAI embeddings (model: text-embedding-3-small) that support multi languages with length=512 (2756x512)
+## D. Parameters:
+1. Embeddings using IndoSBERT model that support Indonesian sentences with vector length=256 (2756x256) and using OpenAI embeddings API (model: text-embedding-3-small) that support multi languages with length=512 (2756x512)
 2. Using top-K = 30 with 1-4 ngram for lexical vector vk (2756x120)
 3. For LDA topic vector vt, using T=8 (2756x8)
 4. Part of speech (POS) vector vp using 17 predefined tags based on Universal POS Tag set (2756x17)
-5. 
+5. For vector entity, we define 28 entites based on SDMX concept on Data Structure Definition (measure, dimension, attribute, item list, etc.): ['ATTRIBUTE', 'DATA_VALUE', 'FACTORY', 'FILE_FORMAT', 'FREQUENCY', 'HOW', 'HOW_MANY', 'HOW_MUCH', 'INDICATOR', 'ITEM', 'LANGUAGE', 'LAW', 'NORP', 'NUMBER', 'ORG', 'OTHER_DIMENSION', 'PERSON', 'PRODUCT', 'QUESTION_MODAL', 'REF_AREA', 'TIME_PERIOD', 'UNIT_MEASURE', 'WHAT', 'WHEN', 'WHERE', 'WHICH', 'WHO', 'WHY'], therefore vector shape is (2756x28)
+6. HDBSCAN min_cluster_size and min_samples range from 5, 10, 15, 25 (min_cluster_size=5 and min_samples=5, min_cluster_size=10 and min_samples=5, min_cluster_size=10 and min_samples=10, min_cluster_size=15 and min_samples=10, min_cluster_size=15 and min_samples=15, min_cluster_size=20 and min_samples=15, min_cluster_size=20 and min_samples=20, min_cluster_size=25 and min_samples=20, min_cluster_size=25 and min_samples=25)
+7. Using UMAP dimensional reduction to 120 dimension (2756x120)
 
-E. Result
+## E. Result
+Using silhouette_score and davies_bouldin_score, we evaluate best combination in features:
+| no | Semantic Embeddings | Feature Dimension | min_cluster_size | min_samples | Total Cluster | Noise | Without Noise | silhouette_sc | davies_bouldin_sc |
+| 1 | OpenAI text-embedding-3-small (512) | 2756x120 | 10 | 10 | 82 | 187 | 2569 | 0.9270 | 0.060 |
 
-
-
+## F. Conclusion
 
 
 
