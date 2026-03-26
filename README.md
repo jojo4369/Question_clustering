@@ -27,7 +27,7 @@ B. Reproduce Clustering Process with HDBSCAN using Semantic vector (Vw), Lexical
 12. Stage-28: Normalize [vectors_reduce] with L2, the output is [vectors_norm]. This [vectors_norm] will now be used as an input in HDBSCAN clustering algorithm.
 13. Stage-29 and Stage-30: Data vectors visualization by reduce ist dimensionality to 3 with UMAP.
 14. Stage-33: setting HDBSCAN parameter min_cluster_size and min_samples and run the algorithm.
-15. Stage-37: Evaluate the cluster with silhouette_score, davies_bouldin_score, and calinski_harabasz_score. This is internal evaluation metric, where the assessment of the clustering quality is based solely on the dataset and the clustering results, and not on external, ground-truth labels.
+15. Stage-37: Evaluate the cluster with silhouette_score, davies_bouldin_score, and calinski_harabasz_score. Those are internal evaluation metrics, where the assessment of the clustering quality is based solely on the dataset and the clustering results, and not on external, ground-truth labels.
 16. 
 
 
