@@ -42,19 +42,27 @@ Using dataset.xlsx with 2756 records, we run HDBSCAN using several cases combina
 7. [vectors_ner_power]
 
 ## D. Parameters:
-1. Embeddings using IndoSBERT model that support Indonesian sentences with vector length=256 (2756x256) and using OpenAI embeddings API (model: text-embedding-3-small) that support multi languages with length=512 (2756x512)
-2. Using top-K = 30 with 1-4 ngram for lexical vector vk (2756x120)
-3. For LDA topic vector vt, using T=8 (2756x8)
-4. Part of speech (POS) vector vp using 17 predefined tags based on Universal POS Tag set (2756x17)
-5. For vector entity, we define 28 entites based on SDMX concept on Data Structure Definition (measure, dimension, attribute, item list, etc.): ['ATTRIBUTE', 'DATA_VALUE', 'FACTORY', 'FILE_FORMAT', 'FREQUENCY', 'HOW', 'HOW_MANY', 'HOW_MUCH', 'INDICATOR', 'ITEM', 'LANGUAGE', 'LAW', 'NORP', 'NUMBER', 'ORG', 'OTHER_DIMENSION', 'PERSON', 'PRODUCT', 'QUESTION_MODAL', 'REF_AREA', 'TIME_PERIOD', 'UNIT_MEASURE', 'WHAT', 'WHEN', 'WHERE', 'WHICH', 'WHO', 'WHY'], therefore vector shape is (2756x28)
+1. For semantic vector **vw**, the embeddings use IndoSBERT model that support Indonesian sentences with vector length=256 (2756x256) and using OpenAI embeddings API (model: text-embedding-3-small) that support multi languages with length=512 (2756x512)
+2. Using top-K = 30 with 1-4 ngram for lexical vector **vk** (2756x120)
+3. For LDA topic vector **vt**, using T=8 (2756x8)
+4. Part of speech (POS) vector **vp** using 17 predefined tags based on Universal POS Tag set (2756x17)
+5. For vector entity **vner**, we define 28 entites based on SDMX concept on Data Structure Definition (measure, dimension, attribute, item list, etc.): ['ATTRIBUTE', 'DATA_VALUE', 'FACTORY', 'FILE_FORMAT', 'FREQUENCY', 'HOW', 'HOW_MANY', 'HOW_MUCH', 'INDICATOR', 'ITEM', 'LANGUAGE', 'LAW', 'NORP', 'NUMBER', 'ORG', 'OTHER_DIMENSION', 'PERSON', 'PRODUCT', 'QUESTION_MODAL', 'REF_AREA', 'TIME_PERIOD', 'UNIT_MEASURE', 'WHAT', 'WHEN', 'WHERE', 'WHICH', 'WHO', 'WHY'], therefore vector shape is (2756x28)
 6. HDBSCAN min_cluster_size and min_samples range from 5, 10, 15, 25 (min_cluster_size=5 and min_samples=5, min_cluster_size=10 and min_samples=5, min_cluster_size=10 and min_samples=10, min_cluster_size=15 and min_samples=10, min_cluster_size=15 and min_samples=15, min_cluster_size=20 and min_samples=15, min_cluster_size=20 and min_samples=20, min_cluster_size=25 and min_samples=20, min_cluster_size=25 and min_samples=25)
 7. Using UMAP dimensional reduction to 120 dimension (2756x120)
 
 ## E. Result
-Using silhouette_score and davies_bouldin_score, we evaluate best combination in features:
-| no | Semantic Embeddings | Combination | min_cluster_size | min_samples | Total Cluster | Noise | Without Noise | silhouette_sc | davies_bouldin_sc |
+Using silhouette_score (higher is better) and davies_bouldin_score (lower is better), we evaluate best combination in features:
+| no | Semantic Embeddings | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
 |----|----------------------|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
-| 1  | OpenAI text-embedding-3-small (512) | concat(vw, vk, vp, vt) | 10 | 10 | 82 | 187 | 2569 | 0.9270 | 0.060 |
+| 1  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 10 | 10 | 82 | 187 | 2569 | **0.9270** | 0.060 |
+| 2  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 10 | 10 | 82 | 303 | 2453 | 0.9210 | 0.084 |
+| 3  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 15 | 15 | 65 | 217 | 2539 | 0.9028 | 0.097 |
+| 4  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 15 | 15 | 61 | 385 | 2371 | **0.9234** | 0.069 |
+| 3  | OpenAI text-embedding-3-small | vw | 15 | 15 | 28 | 1136 | 1620 | 0.8184 | 0.156 |
+| 3  | OpenAI text-embedding-3-small | vk | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 3  | OpenAI text-embedding-3-small | vp | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 3  | OpenAI text-embedding-3-small | vt | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 3  | OpenAI text-embedding-3-small | vner | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 ## F. Conclusion
 
