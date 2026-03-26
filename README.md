@@ -74,6 +74,7 @@ Using silhouette_score (higher is better) and davies_bouldin_score (lower is bet
 ## F. Labeling
 We start by exploring the clustering with vner only (min_cluster_size=15, min_samples=15, total cluster=32) to get the broad view of labels.
 ![3D visualization of clustering with vner vector](vner_only_umap_3d.png)
+![Cluster similarity vner only](similarity between cluster id based on vner.png)
 
 | Cluster ID | Top 10 terms (Entity Tags) | Identification | Proposed Label |
 |------------|---------------------------|----------------|----------------|
