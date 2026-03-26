@@ -56,8 +56,14 @@ Using silhouette_score (higher is better) and davies_bouldin_score (lower is bet
 |----|----------------------|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
 | 1  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 10 | 10 | 82 | 187 | 2569 | **0.9270** | 0.060 |
 | 2  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 10 | 10 | 82 | 303 | 2453 | 0.9210 | 0.084 |
-| 3  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 15 | 15 | 65 | 217 | 2539 | 0.9028 | 0.097 |
-| 4  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 15 | 15 | 61 | 385 | 2371 | **0.9234** | 0.069 |
+
+| no | Semantic Embeddings | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
+|----|----------------------|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
+| 1  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 15 | 15 | 65 | 217 | 2539 | 0.9028 | 0.097 |
+| 2  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 15 | 15 | 61 | 385 | 2371 | **0.9234** | 0.069 |
+
+| no | Semantic Embeddings | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
+|----|----------------------|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
 | 3  | OpenAI text-embedding-3-small | vw | 15 | 15 | 28 | 1136 | 1620 | 0.8184 | 0.156 |
 | 3  | OpenAI text-embedding-3-small | vk | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | 3  | OpenAI text-embedding-3-small | vp | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
