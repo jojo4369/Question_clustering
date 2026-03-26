@@ -54,7 +54,7 @@ Using dataset.xlsx with 2756 records, we run HDBSCAN using several cases combina
 Using silhouette_score (higher is better) and davies_bouldin_score (lower is better), we evaluate best combination in features:
 | no | Semantic Embeddings | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
 |----|----------------------|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
-| 1  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 10 | 10 | 82 | 187 | 2569 | <u>**0.9270**</u> | <u>**0.060**</u> |
+| 1  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 10 | 10 | 82 | 187 | 2569 | **<u>0.9270</u>** | <u>**0.060**</u> |
 | 2  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 10 | 10 | 82 | 303 | 2453 | 0.9210 | 0.084 |
 
 | no | Semantic Embeddings | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
