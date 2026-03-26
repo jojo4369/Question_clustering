@@ -72,11 +72,43 @@ Using silhouette_score (higher is better) and davies_bouldin_score (lower is bet
 | 6  | vner only | 15 | 15 | 32 | 997 | 1759 | **0.5357** | 0.428 |
 
 ## F. Labeling
-We start by exploring the clustering with vner only (min_cluster_size=15, min_samples=15) to get the broad view of cluster
+We start by exploring the clustering with vner only (min_cluster_size=15, min_samples=15, total cluster=32) to get the broad view of labels.
+![3D visualization of clustering with vner vector](vner_only_umap_3d.png)
 
-
-
-
+| Cluster ID | Top 10 terms (Entity Tags) | Identification | Proposed Label |
+|------------|---------------------------|----------------|----------------|
+| 0 | law, indicator, product, ref_area, number, file_format, data_value, what, org, other_dimension |   |   |
+| 1 | factory, indicator, item, ref_area, product, attribute, time_period, other_dimension, how, person |   |   |
+| 2 | number, product, attribute, time_period, other_dimension, indicator, data_value, what, item, ref_area |   |   |
+| 3 | how_much, indicator, product, time_period, ref_area, other_dimension, attribute, item, unit_measure, data_value |   |   |
+| 4 | which, product, item, other_dimension, indicator, attribute, person, ref_area, time_period, data_value |   |   |
+| 5 | when, product, time_period, attribute, indicator, ref_area, data_value, item, other_dimension, file_format |   |   |
+| 6 | why, attribute, product, time_period, data_value, indicator, ref_area, item, other_dimension, unit_measure |   |   |
+| 7 | where, indicator, person, time_period, product, ref_area, attribute, item, other_dimension, unit_measure |   |   |
+| 8 | how_many, indicator, ref_area, time_period, other_dimension, item, product, unit_measure, attribute, what |   |   |
+| 9 | file_format, product, ref_area, time_period, attribute, indicator, what, person, how, item |   |   |
+| 10 | frequency, indicator, time_period, attribute, ref_area, product, item, what, how, other_dimension |   |   |
+| 11 | org, indicator, ref_area, product, what, time_period, other_dimension, attribute, item, person |   |   |
+| 12 | unit_measure, indicator, ref_area, product, time_period, other_dimension, attribute, what, how, item |   |   |
+| 13 | question_modal, product, time_period, indicator, ref_area, attribute, other_dimension, item, person, how |   |   |
+| 14 | data_value, ref_area, product, time_period, indicator, item, what, attribute, how, other_dimension |   |   |
+| 15 | person, time_period, ref_area, indicator, what, product, item, other_dimension, why, question_modal |   |   |
+| 16 | person, how, product, indicator, time_period, ref_area, attribute, other_dimension, what, question_modal |   |   |
+| 17 | how, attribute, indicator, time_period, ref_area, product, other_dimension, what, why, question_modal |   |   |
+| 18 | other_dimension, attribute, product, what, time_period, indicator, ref_area, why, which, question_modal |   |   |
+| 19 | item, time_period, ref_area, product, indicator, what, when, why, which, question_modal |   |   |
+| 20 | item, indicator, product, what, why, unit_measure, which, where, when, question_modal |   |   |
+| 21 | item, product, what, why, which, unit_measure, time_period, where, when, question_modal |   |   |
+| 22 | other_dimension, ref_area, indicator, product, what, when, why, where, which, question_modal |   |   |
+| 23 | other_dimension, time_period, ref_area, indicator, product, what, when, why, which, question_modal |   |   |
+| 24 | ref_area, time_period, indicator, what, why, when, where, unit_measure, which, question_modal |   |   |
+| 25 | ref_area, time_period, indicator, product, what, when, where, why, which, question_modal |   |   |
+| 26 | ref_area, product, indicator, what, why, when, unit_measure, where, which, question_modal |   |   |
+| 27 | product, what, indicator, why, which, unit_measure, time_period, where, when, question_modal |   |   |
+| 28 | time_period, indicator, product, what, why, when, unit_measure, where, which, question_modal |   |   |
+| 29 | product, time_period, what, where, why, when, unit_measure, ref_area, which, question_modal |   |   |
+| 30 | attribute, indicator, what, why, which, unit_measure, time_period, where, when, question_modal |   |   |
+| 31 | attribute, product, what, time_period, indicator, when, why, where, which, question_modal |   |   |
 
 
 
