@@ -76,6 +76,43 @@ We start by exploring the clustering with vner only (min_cluster_size=15, min_sa
 ![3D visualization of clustering with vner vector](vner_only_umap_3d.png)
 ![Cluster similarity vner only](similarity_between_cluster_id_based_on_vner.png)
 
+### Silhouette Score per Cluster (no noise)
+
+| Cluster | Size | Silhouette Score | Negative Score |
+|--------|------|------------------|----------------|
+| 0  | 17  | 0.695693 | False |
+| 1  | 44  | 0.614041 | False |
+| 2  | 36  | 0.630584 | False |
+| 3  | 53  | 0.735464 | False |
+| 4  | 53  | 0.733180 | False |
+| 5  | 61  | 0.817729 | False |
+| 6  | 60  | 0.723059 | False |
+| 7  | 86  | 0.727074 | False |
+| 8  | 109 | 0.722162 | False |
+| 9  | 77  | 0.538377 | False |
+| 10 | 97  | 0.435204 | False |
+| 11 | 91  | 0.365782 | False |
+| 12 | 49  | 0.373557 | False |
+| 13 | 140 | 0.481898 | False |
+| 14 | 45  | 0.168217 | False |
+| 15 | 44  | 0.188982 | False |
+| 16 | 61  | 0.493565 | False |
+| 17 | 242 | 0.185817 | False |
+| 18 | 30  | 0.433404 | False |
+| 19 | 24  | 0.626856 | False |
+| 20 | 18  | 0.901341 | False |
+| 21 | 29  | 0.896639 | False |
+| 22 | 19  | 0.834834 | False |
+| 23 | 24  | 0.777197 | False |
+| 24 | 39  | 0.487644 | False |
+| 25 | 52  | 0.763582 | False |
+| 26 | 25  | 0.875315 | False |
+| 27 | 23  | 0.765512 | False |
+| 28 | 16  | 0.823704 | False |
+| 29 | 37  | 0.730147 | False |
+| 30 | 29  | 0.705608 | False |
+| 31 | 29  | 0.381023 | False |
+
 | Cluster ID | Top 10 terms (Entity Tags) | Proposed Label |
 |------------|---------------------------|----------------|
 | 0 | law, indicator, product, ref_area, number, file_format, data_value, what, org, other_dimension | Policy and Regulation-based Data and Metadata Inquiry |
