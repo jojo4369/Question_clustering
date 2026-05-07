@@ -34,12 +34,10 @@ In addition, we use HDBSCAN clustering algorithm instead of ITER-HDBSCAN and we 
 ## C. Experiment:
 Using dataset.xlsx with 2756 records, we run HDBSCAN using several cases combination:
 1. concat([vectors_vw], [vectors_vk_power], [vectors_vp_power], [vectors_vt_normal])
-2. concat([vectors_vw], [vectors_vk_power], [vectors_vp_power], [vectors_vt_normal], [vectors_ner_power]) 
-3. [vectors_vw]
-4. [vectors_vk_power]
-5. [vectors_vp_power]
-6. [vectors_vt_normal]
-7. [vectors_ner_power]
+2. [vectors_vw]
+3. [vectors_vk_power]
+4. [vectors_vp_power]
+5. [vectors_vt_normal]
 
 ## D. Parameters:
 1. For semantic vector **vw**, the embeddings use IndoSBERT model that support Indonesian sentences with vector length=256 (2756x256) and using OpenAI embeddings API (model: text-embedding-3-small) that support multi languages with length=512 (2756x512)
@@ -57,96 +55,68 @@ Using silhouette_score (higher is better) and davies_bouldin_score (lower is bet
 | 1  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 10 | 10 | 82 | 187 | 2569 | **0.9270** | **0.060** |
 | 2  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 10 | 10 | 82 | 303 | 2453 | 0.9210 | 0.084 |
 
-| no | Semantic Embeddings | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
-|----|----------------------|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
-| 1  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt) | 15 | 15 | 65 | 217 | 2539 | 0.9028 | 0.097 |
-| 2  | OpenAI text-embedding-3-small | concat(vw, vk, vp, vt, vner) | 15 | 15 | 61 | 385 | 2371 | **0.9234** | **0.069** |
-
 | no | Combination | min cluster size | min samples | Total Cluster | Noise | Without Noise | silhouette score | davies bouldin score |
 |----|------------------|------------------|-------------|---------------|-------|---------------|----------------|-------------------|
 | 1  | vw only | 15 | 15 | 28 | 1136 | 1620 | 0.8184 | 0.156 |
 | 2  | vk only | 20 | 20 | 33 | 1238 | 1518 | 0.8482 | 0.189 |
 | 3  | vp only | 5 | 5 | 89 | 1079 | 1677 | 0.3155 | 0.568 |
 | 4  | vt only | 25 | 25 | 14 | 1678 | 1078 | 0.9727 | 0.051 |
-| 5  | vner only | 10 | 10 | 51 | 827 | 1929 | 0.5299 | **0.410** |
-| 6  | vner only | 15 | 15 | 32 | 997 | 1759 | **0.5357** | 0.428 |
+
 
 ## F. Labeling
-We start by exploring the clustering with vner only (min_cluster_size=15, min_samples=15, total cluster=32) to get the broad view of labels.
-![3D visualization of clustering with vner vector](vner_only_umap_3d.png)
-![Cluster similarity vner only](similarity_between_cluster_id_based_on_vner.png)
+| No | Final Cluster Label |
+|----|---------------------|
+| 1 | Agricultural production data availability and access inquiries |
+| 2 | City/Regency-Level Statistical Indicator Data/Metadata Requests |
+| 3 | City-Level Multi-Domain Statistics Data Request |
+| 4 | Consumption and Expenditure Statistics Data and Methodology |
+| 5 | Data Access and Availability, Metadata, Data Governance |
+| 6 | Data Access, Availability, and Methodology Queries |
+| 7 | Data/Metadata Access and Retrieval Procedures |
+| 8 | Detailed Statistical Data and Metadata Availability Requests |
+| 9 | Employment Data Requests by Sector and Region |
+| 10 | Employment in Economic and Industrial Sectors Data Request |
+| 11 | Export and International Trade Statistics Queries |
+| 12 | Export Import Data Request |
+| 13 | General (National Level) Multi-Domain Statistical Data and Metadata Queries |
+| 14 | Granular Regional Data Requests (Subnational Level) |
+| 15 | Gross Domestic Product, Regional Gross Domestic Product, Labour Statistics Data and Metadata Request |
+| 16 | Household Data (Consumption, Expenditure, Income) |
+| 17 | Household Data (Water, Sanitation, and Housing Access) |
+| 18 | How to Access Data |
+| 19 | Human Development and Socioeconomic Indicators Data and Metadata Access |
+| 20 | Industry and Manufacturing data requests, industrial standard classification code alignment |
+| 21 | Industry and Manufacturing data requests, KBLI classification alignment |
+| 22 | Inquiries about Index-related Data: Availability, Calculation, and Access |
+| 23 | Metadata inquiry and access to microdata variables |
+| 24 | Microdata Request |
+| 25 | Microdata, Statistical Methodology and Computation Rules, Data Access Rules |
+| 26 | Multi-Sector Economic Statistics Data Requests |
+| 27 | Multi-Topic Provincial Data Queries |
+| 28 | Official Statistical Data Accessibility, Availability, and Request Procedures |
+| 29 | Price Index (inflation, consumer price index, producer price index, wholesale price index) |
+| 30 | Price-Related Statistical Data/Metadata Request |
+| 31 | Production Statistics Data and industrial standard classification |
+| 32 | Production Statistics Data Request |
+| 33 | Regional Gross Domestic Product Data Access and Availability Queries |
+| 34 | Regional Statistical Data and Analysis Queries (Trends, Comparisons, and Relationships) |
+| 35 | Regional Statistical Data/Metadata Inquiries |
+| 36 | Requests for Percentage-Based Statistical Data |
+| 37 | Requests for Population and Demographic Data/Metadata |
+| 38 | Requests for Statistical Data/Metadata by Dimension (Time, Category, Region) |
+| 39 | Social Indicator Data and Metadata Queries (Education & Food Security) |
+| 40 | Socioeconomic Survey Data Access and Methodological Queries |
+| 41 | Specific Data Inquiries by Level, Time, and Topic |
+| 42 | Statistical Business Data Queries, industrial standard classification code alignment |
+| 43 | Statistical Classification Reference (industrial standard classification code, occupations standard classification code, commodities standard classification code) |
+| 44 | Statistical Data Availability |
+| 45 | Statistical Data Request |
+| 46 | Statistical Metadata, Methodology, and Data Access Procedures |
+| 47 | Statistical methodology, definitions, and metadata queries |
+| 48 | Statistical Survey Data (Microdata) and Metadata Access Queries |
+| 49 | Time Series and Period-Based Data Access (Multi-domain indicators) |
+| 50 | Unemployment and Workforce Indicators Data Request |
 
-### Silhouette Score per Cluster (no noise)
-
-| Cluster | Size | Silhouette Score | Negative Score |
-|--------|------|------------------|----------------|
-| 0  | 17  | 0.695693 | False |
-| 1  | 44  | 0.614041 | False |
-| 2  | 36  | 0.630584 | False |
-| 3  | 53  | 0.735464 | False |
-| 4  | 53  | 0.733180 | False |
-| 5  | 61  | 0.817729 | False |
-| 6  | 60  | 0.723059 | False |
-| 7  | 86  | 0.727074 | False |
-| 8  | 109 | 0.722162 | False |
-| 9  | 77  | 0.538377 | False |
-| 10 | 97  | 0.435204 | False |
-| 11 | 91  | 0.365782 | False |
-| 12 | 49  | 0.373557 | False |
-| 13 | 140 | 0.481898 | False |
-| 14 | 45  | 0.168217 | False |
-| 15 | 44  | 0.188982 | False |
-| 16 | 61  | 0.493565 | False |
-| 17 | 242 | 0.185817 | False |
-| 18 | 30  | 0.433404 | False |
-| 19 | 24  | 0.626856 | False |
-| 20 | 18  | 0.901341 | False |
-| 21 | 29  | 0.896639 | False |
-| 22 | 19  | 0.834834 | False |
-| 23 | 24  | 0.777197 | False |
-| 24 | 39  | 0.487644 | False |
-| 25 | 52  | 0.763582 | False |
-| 26 | 25  | 0.875315 | False |
-| 27 | 23  | 0.765512 | False |
-| 28 | 16  | 0.823704 | False |
-| 29 | 37  | 0.730147 | False |
-| 30 | 29  | 0.705608 | False |
-| 31 | 29  | 0.381023 | False |
-
-| Cluster ID | Top 10 terms (Entity Tags) | Proposed Label |
-|------------|---------------------------|----------------|
-| 0 | law, indicator, product, ref_area, number, file_format, data_value, what, org, other_dimension | Policy and Regulation-based Data and Metadata Inquiry |
-| 1 | factory, indicator, item, ref_area, product, attribute, time_period, other_dimension, how, person |   |
-| 2 | number, product, attribute, time_period, other_dimension, indicator, data_value, what, item, ref_area |   |
-| 3 | how_much, indicator, product, time_period, ref_area, other_dimension, attribute, item, unit_measure, data_value |   |
-| 4 | which, product, item, other_dimension, indicator, attribute, person, ref_area, time_period, data_value |   |
-| 5 | when, product, time_period, attribute, indicator, ref_area, data_value, item, other_dimension, file_format |   |
-| 6 | why, attribute, product, time_period, data_value, indicator, ref_area, item, other_dimension, unit_measure |   |
-| 7 | where, indicator, person, time_period, product, ref_area, attribute, item, other_dimension, unit_measure |   |
-| 8 | how_many, indicator, ref_area, time_period, other_dimension, item, product, unit_measure, attribute, what |   |
-| 9 | file_format, product, ref_area, time_period, attribute, indicator, what, person, how, item |   |
-| 10 | frequency, indicator, time_period, attribute, ref_area, product, item, what, how, other_dimension |   |
-| 11 | org, indicator, ref_area, product, what, time_period, other_dimension, attribute, item, person |   |
-| 12 | unit_measure, indicator, ref_area, product, time_period, other_dimension, attribute, what, how, item |   |
-| 13 | question_modal, product, time_period, indicator, ref_area, attribute, other_dimension, item, person, how |   |
-| 14 | data_value, ref_area, product, time_period, indicator, item, what, attribute, how, other_dimension |   |
-| 15 | person, time_period, ref_area, indicator, what, product, item, other_dimension, why, question_modal |   |
-| 16 | person, how, product, indicator, time_period, ref_area, attribute, other_dimension, what, question_modal |   |
-| 17 | how, attribute, indicator, time_period, ref_area, product, other_dimension, what, why, question_modal |   |
-| 18 | other_dimension, attribute, product, what, time_period, indicator, ref_area, why, which, question_modal |   |
-| 19 | item, time_period, ref_area, product, indicator, what, when, why, which, question_modal |   |
-| 20 | item, indicator, product, what, why, unit_measure, which, where, when, question_modal |   |
-| 21 | item, product, what, why, which, unit_measure, time_period, where, when, question_modal |   |
-| 22 | other_dimension, ref_area, indicator, product, what, when, why, where, which, question_modal |   |
-| 23 | other_dimension, time_period, ref_area, indicator, product, what, when, why, which, question_modal |   |
-| 24 | ref_area, time_period, indicator, what, why, when, where, unit_measure, which, question_modal |   |
-| 25 | ref_area, time_period, indicator, product, what, when, where, why, which, question_modal |   |
-| 26 | ref_area, product, indicator, what, why, when, unit_measure, where, which, question_modal |   |
-| 27 | product, what, indicator, why, which, unit_measure, time_period, where, when, question_modal |   |
-| 28 | time_period, indicator, product, what, why, when, unit_measure, where, which, question_modal |   |
-| 29 | product, time_period, what, where, why, when, unit_measure, ref_area, which, question_modal |   |
-| 30 | attribute, indicator, what, why, which, unit_measure, time_period, where, when, question_modal |   |
-| 31 | attribute, product, what, time_period, indicator, when, why, where, which, question_modal |   |
 
 
 
