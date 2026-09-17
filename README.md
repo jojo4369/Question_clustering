@@ -1,11 +1,10 @@
 This code was built on Python 3.11.9 environtment.
 
 ## A. Dataset Preparation:
-1. Prepare dataset, a text based sentences in a xlsx file format
+1. Prepare dataset, a text based sentences in a xlsx file format, run preprocessing stage using sources from preprocessing folder.
 2. Run stage-02 in intent_mining_official_statistics.ipynb, where creates two columns: a clean version of sentences and deep_clean version
 3. Run OpenAIEmbedding.ipynb if you want to embeddings the sentences using OpenAI embeddings (support multi languages) model using API (need an OpenAI API key). This process will creates a JSON file with embeddings vectors on each sentences (OpenAIEmbeddings_512_question.json, OpenAIEmbeddings_512_question_clean_simple.json).
 4. The final output is an xlsx dataset (dataset_intent_mining_framework.xlsx) where at least have original question, question_clean_simple, and question_clean_deep column.
-5. dataset_intent_mining_framework.xlsx is real-world text-based user questions in the domain of Official Statistics (Statistics Indonesia - BPS, 2024) that has been anonimized and decomposed from original sentences.
 
 ## B. Reproduce:
 1. In intent_mining_official_statistics.ipynb, using dataset.xlsx, run Stage-01 to load the dataset in the dataframe.
